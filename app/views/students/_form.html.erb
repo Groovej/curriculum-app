@@ -1,0 +1,41 @@
+<%= form_with(model: student) do |form| %>
+  <% if student.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(student.errors.count, "error") %> prohibited this student from being saved:</h2>
+
+      <ul>
+        <% student.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name %>
+  </div>
+
+  <div>
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name %>
+  </div>
+  <hr />
+  <div>
+    <%= form.label :sections, 'Sections' %><br>
+    <% Section.all.each do |section| %>
+      <%= form.check_box :section_ids, { multiple: true }, section.id, nil %>
+      <%= section.start_time.strftime("%H:%M") %> -
+      <%= section.end_time.strftime("%H:%M") %> /
+      <%= section.teacher.full_name %> /
+      <%= section.subject.name %> /
+      <%= section.classroom.name %> /
+      <%= section.days_of_week_presenter %>
+      <br>
+    <% end %>
+  </div>
+  <hr />
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,23 @@
+<div>
+  <p>
+    <strong>Full Name:</strong>
+    <%= "#{@student.first_name} #{@student.last_name}" %>
+  </p>
+  <% if @student.sections.any? %>
+    <p>
+      <strong>Sections:</strong>
+      <% @student.sections.each do |section| %>
+        <div class="section">
+          <p>
+            <%= section.subject.name %>,
+            <%= section.classroom.name %>,
+            <%= section.teacher.full_name %> |
+            <%= section.start_time.strftime('%H:%M') %> &ndash;
+            <%= section.end_time.strftime('%H:%M') %> |
+            <%= section.days_of_week_presenter %>
+          </p>
+        </div>
+      <% end %>
+    </p>
+  <% end %>
+</div>

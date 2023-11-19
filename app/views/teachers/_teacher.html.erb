@@ -1,0 +1,11 @@
+<div id="<%= dom_id teacher %>">
+  <p>
+    <strong>Full Name:</strong>
+    <%= teacher.full_name %>
+  </p>
+
+  <p>
+    <strong>Subjects:</strong>
+    <%= teacher.subjects.pluck(:name).join(', ') %>
+  </p>
+</div>
