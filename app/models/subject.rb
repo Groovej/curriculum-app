@@ -1,3 +1,4 @@
 class Subject < ApplicationRecord
-  has_and_belongs_to_many :teachers
+  has_many :subjects_teacher
+  has_many :teachers, -> { distinct },  through: :subjects_teacher
 end

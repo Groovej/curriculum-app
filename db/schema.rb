@@ -56,6 +56,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_17_162333) do
   create_table "subjects_teachers", id: false, force: :cascade do |t|
     t.bigint "teacher_id", null: false
     t.bigint "subject_id", null: false
+    t.index ["teacher_id", "subject_id"], name: "index_subjects_teachers_on_teacher_id_and_subject_id"
   end
 
   create_table "teachers", force: :cascade do |t|
